@@ -1,0 +1,26 @@
+# Python bytecode / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyInstaller build outputs
+build/
+dist/
+cmd_helper.spec
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# IDE configurations
+.idea/
+.vscode/
+.DS_Store
+
+# Logs
+*.log
+
+# Sensitive environments
+.env
+.env.*
