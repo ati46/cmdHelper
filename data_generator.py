@@ -12,6 +12,8 @@ VIM_DATA = [
     { "action": "从系统剪贴板粘贴到光标前 (Paste from System Clipboard Before)", "keywords": ["粘贴", "系统剪贴板", "paste", "system", "clipboard", "plus", "register", "+", "P"], "command": "\"+P" },
     { "action": "设置默认使用系统剪贴板 (Set System Clipboard as Default)", "keywords": ["配置", "默认", "系统剪贴板", "unnamedplus", "clipboard", "vimrc", "set"], "command": "set clipboard=unnamedplus (在 ~/.vimrc 中添加)" },
     { "action": "检查 Vim 是否支持系统剪贴板 (Check Clipboard Support)", "keywords": ["检查", "支持", "系统剪贴板", "version", "grep", "clipboard", "status"], "command": "vim --version | grep clipboard (需输出 +clipboard)" },
+    { "action": "在命令行 / 或 : 状态下粘贴剪贴板/寄存器内容 (Paste in Command-line Mode)", "keywords": ["命令行", "粘贴", "搜索", "寄存器", "剪贴板", "paste", "command", "search", "ctrl", "r"], "command": "Ctrl + r 随后按 + (系统剪贴板) 或 \" (默认寄存器)" },
+    { "action": "在命令行 / 或 : 状态下插入当前光标处的单词 (Insert Cursor Word to Command-line)", "keywords": ["插入单词", "光标词", "搜索词", "命令行", "cursor", "word", "insert", "ctrl", "r", "w"], "command": "Ctrl + r 随后按 Ctrl + w" },
     { "action": "启用粘贴模式防止缩进错乱 (Enable Paste Mode)", "keywords": ["粘贴模式", "缩进", "格式", "paste", "set", "indent", "format"], "command": ":set paste" },
     { "action": "Esc 回到 Normal 模式自动切回英文输入法 (Auto Switch Input Method on Esc)", "keywords": ["输入法", "自动切换", "英文", "中文", "fcitx", "esc", "normal", "input", "method", "ideavim"], "command": "在 ~/.vimrc, ~/.ideavimrc 或 VSCode/Cursor 中配置 fcitx 联动" },
     { "action": "关闭粘贴模式 (Disable Paste Mode)", "keywords": ["关闭粘贴", "nopaste", "set"], "command": ":set nopaste" },
