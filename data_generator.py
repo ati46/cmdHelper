@@ -11,6 +11,8 @@ VIM_DATA = [
     { "action": "从系统剪贴板粘贴到光标后 (Paste from System Clipboard After)", "keywords": ["粘贴", "系统剪贴板", "paste", "system", "clipboard", "plus", "register", "+", "p"], "command": "\"+p" },
     { "action": "从系统剪贴板粘贴到光标前 (Paste from System Clipboard Before)", "keywords": ["粘贴", "系统剪贴板", "paste", "system", "clipboard", "plus", "register", "+", "P"], "command": "\"+P" },
     { "action": "设置默认使用系统剪贴板 (Set System Clipboard as Default)", "keywords": ["配置", "默认", "系统剪贴板", "unnamedplus", "clipboard", "vimrc", "set"], "command": "set clipboard=unnamedplus (在 ~/.vimrc 中添加)" },
+    { "action": "可视模式下粘贴不覆盖默认寄存器 (Prevent Visual Paste Overwrite)", "keywords": ["可视模式", "粘贴", "覆盖", "不覆盖", "寄存器", "剪贴板", "visual", "paste", "overwrite", "xnoremap", "p"], "command": "xnoremap p \"_dP (在 ~/.vimrc 或 ~/.ideavimrc 中配置)" },
+    { "action": "可视模式下连续粘贴最初复制的内容 (Visual Mode Paste Origin)", "keywords": ["可视模式", "连续粘贴", "复制内容", "粘贴", "visual", "paste", "origin", "0", "p"], "command": "ve\"0p (指定 0 号寄存器粘贴，多次粘贴时内容不被覆盖)" },
     { "action": "检查 Vim 是否支持系统剪贴板 (Check Clipboard Support)", "keywords": ["检查", "支持", "系统剪贴板", "version", "grep", "clipboard", "status"], "command": "vim --version | grep clipboard (需输出 +clipboard)" },
     { "action": "在命令行 / 或 : 状态下粘贴剪贴板/寄存器内容 (Paste in Command-line Mode)", "keywords": ["命令行", "粘贴", "搜索", "寄存器", "剪贴板", "paste", "command", "search", "ctrl", "r"], "command": "Ctrl + r 随后按 + (系统剪贴板) 或 \" (默认寄存器)" },
     { "action": "在命令行 / 或 : 状态下插入当前光标处的单词 (Insert Cursor Word to Command-line)", "keywords": ["插入单词", "光标词", "搜索词", "命令行", "cursor", "word", "insert", "ctrl", "r", "w"], "command": "Ctrl + r 随后按 Ctrl + w" },
@@ -308,6 +310,23 @@ LAZYGIT_DATA = [
     { "action": "冲突导航：下一个/上一个更改块 (Next/Prev Hunk)", "keywords": ["下一个", "上一个", "更改块", "hunk", "j", "k"], "command": "j / k (或 下/上 方向键)" }
 ]
 
+MVN_DATA = [
+    { "action": "清理并打包 (Clean & Package)", "keywords": ["清理", "打包", "clean", "package", "mvn"], "command": "mvn clean package" },
+    { "action": "跳过测试清理并打包 (Package Skip Tests)", "keywords": ["打包", "跳过测试", "skip", "test", "mvn", "Dmaven.test.skip"], "command": "mvn clean package -Dmaven.test.skip=true" },
+    { "action": "清理并安装到本地仓库 (Install to Local Repo)", "keywords": ["安装", "本地", "install", "mvn"], "command": "mvn clean install" },
+    { "action": "跳过测试安装到本地仓库 (Install Skip Tests)", "keywords": ["安装", "跳过测试", "install", "skip", "test", "mvn"], "command": "mvn clean install -Dmaven.test.skip=true" },
+    { "action": "编译源代码 (Compile)", "keywords": ["编译", "compile", "mvn"], "command": "mvn compile" },
+    { "action": "清理目标目录 (Clean)", "keywords": ["清理", "clean", "mvn"], "command": "mvn clean" },
+    { "action": "运行测试 (Test)", "keywords": ["测试", "test", "mvn"], "command": "mvn test" },
+    { "action": "显示依赖树 (Dependency Tree)", "keywords": ["依赖树", "冲突", "dependency", "tree", "mvn"], "command": "mvn dependency:tree" },
+    { "action": "下载源码包 (Download Sources)", "keywords": ["下载", "源码", "source", "mvn"], "command": "mvn dependency:sources" },
+    { "action": "下载 Javadoc (Download Javadocs)", "keywords": ["下载", "javadoc", "mvn"], "command": "mvn dependency:resolve -Dclassifier=javadoc" },
+    { "action": "部署到远程私服 (Deploy)", "keywords": ["部署", "私服", "deploy", "mvn"], "command": "mvn clean deploy" },
+    { "action": "强制更新快照依赖 (Force Update Snapshots)", "keywords": ["强制", "更新", "快照", "update", "snapshot", "U", "mvn"], "command": "mvn clean package -U" },
+    { "action": "非交互/批处理模式构建 (Batch Mode / CI)", "keywords": ["非交互", "批处理", "流水线", "静默输出", "ci", "batch", "B", "mvn"], "command": "mvn clean package -B" },
+    { "action": "非交互且强制更新构建 (CI Batch & Update)", "keywords": ["流水线", "非交互", "强制", "更新", "ci", "batch", "update", "B", "U", "mvn"], "command": "mvn clean package -B -U" }
+]
+
 def ensure_data_files(data_dir: str):
     """
     Ensure the data files exist in the specified directory.
@@ -324,7 +343,8 @@ def ensure_data_files(data_dir: str):
         "ls.json": LS_DATA,
         "idea.json": IDEA_DATA,
         "git.json": GIT_DATA,
-        "lazygit.json": LAZYGIT_DATA
+        "lazygit.json": LAZYGIT_DATA,
+        "mvn.json": MVN_DATA
     }
     
     for filename, data in datasets.items():
@@ -358,7 +378,8 @@ if __name__ == "__main__":
         "ls.json": LS_DATA,
         "idea.json": IDEA_DATA,
         "git.json": GIT_DATA,
-        "lazygit.json": LAZYGIT_DATA
+        "lazygit.json": LAZYGIT_DATA,
+        "mvn.json": MVN_DATA
     }
     
     for filename, data in datasets.items():
